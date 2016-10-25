@@ -1,17 +1,33 @@
 
 
-function Player(player1, totalScore1, roll) {
-  this.player1 = "Player 1";
-  this.totalScore1 = 0;
-  this.roll = roll;
-  this.hold = [];
+function Player(player) {
+  this.player = player;
+  this.totalScore = 0;
 }
 
-function Player(player2, totalScore2, roll) {
-  this.player1 = "Player 2";
-  this.totalScore1 = 0;
-  this.roll = roll;
-  this.hold = [];
+function PigDice(player1, player2) {
+  this.currentPlayer = player1;
+  this.roll = Math.floor(Math.random() * 6) + 1;
+  this.currentScore = 0;
+}
+
+PigDice.protopype.playGame(player, currentScore) {
+  var roll = this.roll;
+  if(roll === 1) {
+    this.currentScore = 0;
+    this.switchPlayer();
+  } else if(roll !== 1) {
+    this.currentScore += roll;
+
+  }
+}
+
+PigDice.protopype.switchPlayer(){
+  if(this.currentPlayer = player1) {
+    this.currentPlayer = player2;
+  } else {
+    this.currentPlayer = player1;
+  }
 }
 
 $(document).ready(function() {
@@ -19,15 +35,13 @@ $(document).ready(function() {
     $("#play-game-btn").hide();
     $("#game").show();
 
-    var player1 = "player1";
-    var player1score = 0;
-    var player2 = "player2";
-    var player2score = 0;
+    var currentPlayer1 = "player1";
+    var currentPlayer2 = "player2";
 
-    var roll = Math.floor(Math.random() * 6) + 1;
+    var player1 = new Player(currentPlayer1);
+    var player2 = new Player(currentPlayer2);
 
-    var player = Player(player1, totalScore1, roll);
-    var player = Player(player2, totalScore2, roll);
+    var game = new PigDice(player1, player2)
 
     event.preventDefault();
   });
